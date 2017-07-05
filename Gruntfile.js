@@ -4,27 +4,27 @@ module.exports = function (grunt) {
         concat: {
             css: {
                 src: [
-                    'css/*'
+                    'stylesheets/*'
                 ],
-                dest: 'combined.css'
+                dest: 'dist/combined.css'
             },
             js: {
                 src: [
-                    'js/*'
+                    'javascripts/*'
                 ],
-                dest: 'combined.js'
+                dest: 'dist/combined.js'
             }
         },
         cssmin: {
             css: {
-                src: 'combined.css',
-                dest: 'combined.min.css'
+                src: 'dist/combined.css',
+                dest: 'dist/combined.min.css'
             }
         },
         uglify: {
             js: {
                 files: {
-                    'combined.js': ['combined.js']
+                    'dist/combined.js': ['dist/combined.js']
                 }
             }
         },
