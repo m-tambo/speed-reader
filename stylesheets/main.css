@@ -1,0 +1,25 @@
+body {
+
+}
+
+.logo {
+  background-color: #ffeb3b;
+  margin: 5%;
+  font-family: 'Mrs Sheppards', cursive;
+  font-size: 4em;
+}
+
+.search {
+  margin: 0 20%;
+  display: grid;
+}
+
+.url-input {
+  font-size: 16px;
+  padding: 0 150px;
+  line-height: 150%;
+}
+
+.main-div {
+  display: flex;
+}
