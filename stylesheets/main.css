@@ -11,6 +11,7 @@ body {
 
 .main-container {
   display: flex;
+  flex-flow: column;
 }
 
 .search-div {
@@ -20,7 +21,7 @@ body {
 .url-input {
   display: grid;
   font-size: 16px;
-  padding: 0 150px;
+  padding: 0 50px;
   line-height: 150%;
 }
 
@@ -29,5 +30,5 @@ body {
 }
 
 .results-div {
-
+  margin: 0 20%;
 }
