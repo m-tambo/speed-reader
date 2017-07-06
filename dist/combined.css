@@ -9,17 +9,25 @@ body {
   font-size: 4em;
 }
 
-.search {
+.main-container {
+  display: flex;
+}
+
+.search-div {
   margin: 0 20%;
-  display: grid;
 }
 
 .url-input {
+  display: grid;
   font-size: 16px;
   padding: 0 150px;
   line-height: 150%;
 }
 
-.main-div {
-  display: flex;
+.submit-btn {
+  margin: 4% 0;
+}
+
+.results-div {
+
 }
