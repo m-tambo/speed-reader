@@ -1,6 +1,17 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['es2015']
+            },
+            dist: {
+                files: {
+                    'dist/combined-babeled.js': 'dist/combined.js'
+                }
+            }
+        },
         concat: {
             css: {
                 src: [
@@ -24,12 +35,22 @@ module.exports = function (grunt) {
         uglify: {
             js: {
                 files: {
-                    'dist/combined.js': ['dist/combined.js']
+                    'dist/combined.min.js': ['dist/combined-babeled.js']
                 }
             }
         },
+        watch: {
+          css: {
+            files: ['stylesheets/*'],
+            tasks: ['concat:css', 'cssmin:css']
+          },
+          js: {
+            files: ['javascripts/*'],
+            tasks: ['concat:js', 'babel', 'uglify:js']
+          }
+        }
     });
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    grunt.registerTask('default', ['concat:css', 'cssmin:css', 'concat:js', 'uglify:js']);
+    grunt.registerTask('default', ['concat:css', 'cssmin:css', 'concat:js', 'babel', 'uglify:js']);
 };
