@@ -14,29 +14,20 @@ const revealResults = () => {
   resultsDiv.removeAttribute('hidden');
 }
 
-const clearInputField = () => {
-  nameOfURL.value = ''
-}
-
-const showURLInfo = (URLData) => {
-  console.log(`url data: ${URLData}`)
+const showURLInfo = () => {
+  const t = this.performance.timing
+  let pageLoadDuration = t.loadEventEnd - t.navigationStart;
+    // t.responseEnd - t.navigationStart includes DNS timing which does not transfer any data from server to client
+  siteSpeedNumber.innerHTML = pageLoadDuration
 }
 
 // _______events_______
 submitForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   revealResults();
+
+  let requestURLInfo = new XMLHttpRequest ()
   requestURLInfo.addEventListener('load', showURLInfo)
   requestURLInfo.open('GET', nameOfURL.value)
   requestURLInfo.send()
-});
-
-nameOfURL.addEventListener('click', () => {
-  clearInputField()
-})
-
-
-// _______in case we want some jQuery_______
-$( document ).ready( () => {
-
 });
