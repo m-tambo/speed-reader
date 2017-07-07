@@ -56,3 +56,9 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Grunt-generated files
+/dist/combined-babeled.js
+/dist/combined-babeled.js.map
+/dist/combined.css
+/dist/combined.js
