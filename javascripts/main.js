@@ -5,7 +5,7 @@ const submitForm = document.querySelector('.search-div');
 const resultsDiv = document.querySelector('.results-div');
 let nameOfURL = document.querySelector('.url-input');
 let resultsDivHeader = document.querySelector('.url-name');
-let requestURLInfo = new XMLHttpRequest ()
+let siteSpeedNumber = document.querySelector('.site-speed-number')
 
 // ______functions_______
 const revealResults = () => {
