@@ -5,7 +5,9 @@ const submitForm = document.querySelector('.search-div');
 const resultsDiv = document.querySelector('.results-div');
 let nameOfURL = document.querySelector('.url-input');
 let resultsDivHeader = document.querySelector('.url-name');
-let siteSpeedNumber = document.querySelector('.site-speed-number')
+let timeToFirstByte = document.querySelector('.first-byte');
+let speedIndex = document.querySelector('.speed-index');
+let pageSize = document.querySelector('.page-size');
 
 // ______functions_______
 const revealResults = () => {
@@ -14,11 +16,12 @@ const revealResults = () => {
   resultsDiv.removeAttribute('hidden');
 }
 
-const showURLInfo = () => {
+const showURLInfo = (data) => {
+  console.log(`data: ${data}`)
   const t = this.performance.timing
   let pageLoadDuration = t.loadEventEnd - t.navigationStart;
     // t.responseEnd - t.navigationStart includes DNS timing which does not transfer any data from server to client
-  siteSpeedNumber.innerHTML = pageLoadDuration
+  speedIndex.innerHTML = pageLoadDuration
 }
 
 // _______events_______
