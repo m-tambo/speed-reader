@@ -2,6 +2,14 @@ body {
 
 }
 
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
 .logo {
   background-color: #ffeb3b;
   margin: 5%;
