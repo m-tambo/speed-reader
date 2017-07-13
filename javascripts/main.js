@@ -1,10 +1,11 @@
 console.log(`this seems to be working`);
 
 // _______targets_______
-const server = 'http://localhost:4040/getstats'
+const server = 'https://url-speed-reader.herokuapp.com/getstats' // 'http://localhost:4040/getstats' //
 const submitForm = document.querySelector('.search-div');
 const retry = document.querySelector('.retry-btn');
 const resultsDiv = document.querySelector('.results-div');
+const analyzingMsg = document.querySelector('.analyzing');
 let nameOfURL = document.querySelector('.url-input');
 let resultsDivHeader = document.querySelector('.url-name');
 let timeToFirstByte = document.querySelector('.first-byte');
