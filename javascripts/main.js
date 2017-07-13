@@ -1,7 +1,7 @@
 console.log(`this seems to be working`);
 
 // _______targets_______
-const server = 'https://url-speed-reader.herokuapp.com/getstats' // 'http://localhost:4040/getstats' //
+const server = 'https://speed-reader-heroku.herokuapp.com/getstats' // 'http://localhost:4040/getstats' //
 const submitForm = document.querySelector('.search-div');
 const retry = document.querySelector('.retry-btn');
 const resultsDiv = document.querySelector('.results-div');
