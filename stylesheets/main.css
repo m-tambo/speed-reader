@@ -33,7 +33,7 @@ body {
   line-height: 150%;
 }
 
-.submit-btn {
+.submit-btn, .retry-btn {
   margin: 4% 0;
 }
 

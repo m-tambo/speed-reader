@@ -1,7 +1,9 @@
 console.log(`this seems to be working`);
 
 // _______targets_______
+const server = 'http://localhost:4040/getstats'
 const submitForm = document.querySelector('.search-div');
+const retry = document.querySelector('.retry-btn');
 const resultsDiv = document.querySelector('.results-div');
 let nameOfURL = document.querySelector('.url-input');
 let resultsDivHeader = document.querySelector('.url-name');
@@ -11,26 +13,46 @@ let pageSize = document.querySelector('.page-size');
 
 // ______functions_______
 const revealResults = () => {
-  console.log(`showing the results for ${nameOfURL.value}`);
+  console.log(`getting performance stats for ${nameOfURL.value}`);
   resultsDivHeader.innerHTML = nameOfURL.value
   resultsDiv.removeAttribute('hidden');
 }
 
 const showURLInfo = (data) => {
+  data = JSON.parse(data)
+  console.log(typeof data)
   console.log(`data: ${data}`)
-  const t = this.performance.timing
-  let pageLoadDuration = t.loadEventEnd - t.navigationStart;
-    // t.responseEnd - t.navigationStart includes DNS timing which does not transfer any data from server to client
-  speedIndex.innerHTML = pageLoadDuration
+  console.log(`data.pageSize: ${data.pageSize}`)
+  timeToFirstByte.innerHTML = (data.responseStart - data.requestStart)/1000
+  speedIndex.innerHTML = (data.loadEventEnd - data.navStart)/1000
+  pageSize.innerHTML = data.pageSize/10000000
 }
+
+const requestForPerformanceStats = () => {
+  let xhr = new XMLHttpRequest ();
+  xhr.open('GET', `${server}/${nameOfURL.value}`);
+  xhr.onload = () => showURLInfo(xhr.response);
+  xhr.send();
+}
+
+// function asyncRequest(url) {
+//   return new Promise((resolve, reject) => {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open("GET", url);
+//     xhr.onload = () => resolve(xhr.responseText);
+//     xhr.onerror = () => reject(xhr.statusText);
+//     xhr.send();
+//   });
+// };
 
 // _______events_______
 submitForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
+  requestForPerformanceStats();
   revealResults();
+});
 
-  let requestURLInfo = new XMLHttpRequest ()
-  requestURLInfo.addEventListener('load', showURLInfo)
-  requestURLInfo.open('GET', nameOfURL.value)
-  requestURLInfo.send()
+retry.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  requestForPerformanceStats();
 });
