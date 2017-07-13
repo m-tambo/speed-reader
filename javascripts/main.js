@@ -12,20 +12,20 @@ let speedIndex = document.querySelector('.speed-index');
 let pageSize = document.querySelector('.page-size');
 
 // ______functions_______
-const revealResults = () => {
+const analyzingUrl = () => {
+  analyzingMsg.classList.remove('hidden')
   console.log(`getting performance stats for ${nameOfURL.value}`);
-  resultsDivHeader.innerHTML = nameOfURL.value
-  resultsDiv.removeAttribute('hidden');
 }
 
-const showURLInfo = (data) => {
-  data = JSON.parse(data)
-  console.log(typeof data)
+const showURLInfo = (stats) => {
+  data = JSON.parse(stats)
   console.log(`data: ${data}`)
-  console.log(`data.pageSize: ${data.pageSize}`)
-  timeToFirstByte.innerHTML = (data.responseStart - data.requestStart)/1000
-  speedIndex.innerHTML = (data.loadEventEnd - data.navStart)/1000
-  pageSize.innerHTML = data.pageSize/10000000
+  analyzingMsg.classList.add('hidden')
+  resultsDiv.classList.remove('hidden');
+  resultsDivHeader.innerHTML = nameOfURL.value
+  timeToFirstByte.innerHTML = (data.responseStart - data.requestStart)/1000;
+  speedIndex.innerHTML = (data.loadEventEnd - data.navStart)/1000;
+  pageSize.innerHTML = data.pageSize/10000000;
 }
 
 const requestForPerformanceStats = () => {
@@ -35,24 +35,16 @@ const requestForPerformanceStats = () => {
   xhr.send();
 }
 
-// function asyncRequest(url) {
-//   return new Promise((resolve, reject) => {
-//     const xhr = new XMLHttpRequest();
-//     xhr.open("GET", url);
-//     xhr.onload = () => resolve(xhr.responseText);
-//     xhr.onerror = () => reject(xhr.statusText);
-//     xhr.send();
-//   });
-// };
-
 // _______events_______
 submitForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
+  analyzingUrl();
   requestForPerformanceStats();
-  revealResults();
 });
 
 retry.addEventListener('click', (evt) => {
   evt.preventDefault();
+   resultsDiv.classList.add('hidden');
+  analyzingUrl();
   requestForPerformanceStats();
 });

@@ -2,6 +2,10 @@ body {
 
 }
 
+.hidden {
+  display: none;
+}
+
 .red {
   color: red;
 }
@@ -22,7 +26,7 @@ body {
   flex-flow: column;
 }
 
-.search-div {
+.search-div, .results-div, .analyzing {
   margin: 0 20%;
 }
 
@@ -35,8 +39,4 @@ body {
 
 .submit-btn, .retry-btn {
   margin: 4% 0;
-}
-
-.results-div {
-  margin: 0 20%;
 }
