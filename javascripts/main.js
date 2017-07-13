@@ -19,7 +19,7 @@ const analyzingUrl = () => {
 }
 
 const showURLInfo = (stats) => {
-  data = JSON.parse(stats)
+  const data = JSON.parse(stats)
   console.log(`data: ${data}`)
   analyzingMsg.classList.add('hidden')
   resultsDiv.classList.remove('hidden');
