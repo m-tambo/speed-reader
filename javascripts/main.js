@@ -37,16 +37,14 @@ const requestForPerformanceStats = () => {
   xhr.send();
 }
 
-// _______events_______
-submitForm.addEventListener('submit', (evt) => {
+const initiateUrlAnalysis = (evt) => {
   evt.preventDefault();
+  resultsDiv.classList.add('hidden');
   analyzingUrl();
   requestForPerformanceStats();
-});
+}
 
-retry.addEventListener('click', (evt) => {
-  evt.preventDefault();
-   resultsDiv.classList.add('hidden');
-  analyzingUrl();
-  requestForPerformanceStats();
-});
+// _______events_______
+submitForm.addEventListener('submit', (evt) => initiateUrlAnalysis(evt));
+
+retry.addEventListener('click', (evt) => initiateUrlAnalysis(evt));
