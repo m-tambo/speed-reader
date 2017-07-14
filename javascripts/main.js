@@ -1,5 +1,3 @@
-console.log(`this seems to be working`);
-
 // _______targets_______
 const server = 'https://speed-reader-heroku.herokuapp.com/getstats' // 'http://localhost:4040/getstats' //
 const submitForm = document.querySelector('.search-div');
@@ -14,19 +12,22 @@ let pageSize = document.querySelector('.page-size');
 
 // ______functions_______
 const analyzingUrl = () => {
-  analyzingMsg.classList.remove('hidden')
-  console.log(`getting performance stats for ${nameOfURL.value}`);
+  analyzingMsg.classList.remove('hidden');
 }
 
-const showURLInfo = (stats) => {
-  const data = JSON.parse(stats)
-  console.log(`data: ${data}`)
-  analyzingMsg.classList.add('hidden')
-  resultsDiv.classList.remove('hidden');
-  resultsDivHeader.innerHTML = nameOfURL.value
+const assignStatsToResultsDiv = (data) => {
+  resultsDivHeader.innerHTML = nameOfURL.value;
   timeToFirstByte.innerHTML = (data.responseStart - data.requestStart)/1000;
   speedIndex.innerHTML = (data.loadEventEnd - data.navStart)/1000;
   pageSize.innerHTML = data.pageSize/10000000;
+}
+
+const showURLInfo = (stats) => {
+  console.log(`stats: ${stats}`)
+  const data = JSON.parse(stats);
+  analyzingMsg.classList.add('hidden');
+  resultsDiv.classList.remove('hidden');
+  assignStatsToResultsDiv(data);
 }
 
 const requestForPerformanceStats = () => {
