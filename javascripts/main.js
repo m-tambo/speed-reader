@@ -1,20 +1,16 @@
 // _______targets_______
-const server = 'https://speed-reader-heroku.herokuapp.com/getstats' // 'http://localhost:4040/getstats' //
+const server = 'https://speed-reader-heroku.herokuapp.com/getstats';
 const submitForm = document.querySelector('.search-div');
 const retry = document.querySelector('.retry-btn');
 const resultsDiv = document.querySelector('.results-div');
 const analyzingMsg = document.querySelector('.analyzing');
-let nameOfURL = document.querySelector('.url-input');
+const nameOfURL = document.querySelector('.url-input');
 let resultsDivHeader = document.querySelector('.url-name');
 let timeToFirstByte = document.querySelector('.first-byte');
 let speedIndex = document.querySelector('.speed-index');
 let pageSize = document.querySelector('.page-size');
 
 // ______functions_______
-const analyzingUrl = () => {
-  analyzingMsg.classList.remove('hidden');
-}
-
 const assignStatsToResultsDiv = (data) => {
   resultsDivHeader.innerHTML = nameOfURL.value;
   timeToFirstByte.innerHTML = (data.responseStart - data.requestStart)/1000;
@@ -23,7 +19,7 @@ const assignStatsToResultsDiv = (data) => {
 }
 
 const showURLInfo = (stats) => {
-  console.log(`stats: ${stats}`)
+  console.log(`stats: ${stats}`);
   const data = JSON.parse(stats);
   analyzingMsg.classList.add('hidden');
   resultsDiv.classList.remove('hidden');
@@ -40,7 +36,7 @@ const requestForPerformanceStats = () => {
 const initiateUrlAnalysis = (evt) => {
   evt.preventDefault();
   resultsDiv.classList.add('hidden');
-  analyzingUrl();
+  analyzingMsg.classList.remove('hidden');
   requestForPerformanceStats();
 }
 
